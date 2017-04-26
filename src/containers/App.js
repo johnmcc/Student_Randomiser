@@ -22,8 +22,14 @@ class App extends Component {
 
   start(event){
     event.preventDefault();
+    
     let currentName = _.sample(this.state.names);
+    let newNames = _.remove(this.state.names, name => {
+      return name !== currentName;
+    });
+
     this.setState({
+      names: newNames,
       currentName: currentName
     });
   }
