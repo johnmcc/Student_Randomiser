@@ -26,6 +26,10 @@ class App extends Component {
     })
   }
 
+  handleStop(name) {
+    console.log("Stopped at", name)
+  }
+
   render() {
     return (
       <div className="App">
@@ -33,7 +37,9 @@ class App extends Component {
         <NamesList 
           names={ this.state.names }
           onClick={ this.handleDelete.bind(this) } />
-        <RandomiserDisplay names={this.state.names}/>
+        <RandomiserDisplay 
+          names={this.state.names}
+          onStop={this.handleStop}/>
       </div>
     );
   }

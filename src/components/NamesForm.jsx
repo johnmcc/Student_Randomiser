@@ -9,7 +9,7 @@ export default class NamesForm extends React.Component {
     }
   }
 
-  handleKeyUp(event) {
+  handleTextChange(event) {
     this.setState({
       name: event.target.value
     })
@@ -27,7 +27,7 @@ export default class NamesForm extends React.Component {
         <input 
           type="text" 
           ref="input" 
-          onKeyUp={this.handleKeyUp.bind(this)}/>
+          onChange={this.handleTextChange.bind(this)}/>
         <button>+</button>
       </form>
     );
