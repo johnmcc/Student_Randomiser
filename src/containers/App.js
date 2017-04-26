@@ -1,55 +1,45 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import RandomiserForm from '../components/RandomiserForm';
+import NamesList from '../components/NamesList';
+import NamesForm from '../components/NamesForm';
 import RandomiserDisplay from '../components/RandomiserDisplay';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: [],
-      currentName: null
+      names: []
     };
   }
 
-  onNameKeyUp(event){
-    let names = event.target.value.split(",").map((name, index) => {return name.trim()});
+  addName(name){
     this.setState({
-      names: names
-    });
+      names: [...this.state.names, name]
+    })
   }
 
-  start(event){
-    event.preventDefault();
+  handleDelete(event) {
+    const newNames = this.state.names.filter((x, i) => i.toString() !== event.target.value);
+    this.setState({
+      names: newNames
+    })
+  }
 
-    let interval = setInterval(() => {
-      var tmpName = _.sample(this.state.names);
-      this.setState({
-        currentName: tmpName
-      });
-    }, 100);
-    
-    // let currentName = _.sample(this.state.names);
-    // let newNames = _.remove(this.state.names, name => {
-    //   return name !== currentName;
-    // });
-
-    // this.setState({
-    //   names: newNames,
-    //   currentName: currentName
-    // });
+  handleStop(name) {
+    console.log("Stopped at", name)
   }
 
   render() {
     return (
       <div className="App">
-        <RandomiserForm 
-          onNameKeyUp={ (event) => {this.onNameKeyUp(event)} }
-          onSubmit={ (event) => {this.start(event)} }
-        />
-
-        <RandomiserDisplay currentName={this.state.currentName} />
+        <NamesForm onButtonClick={ this.addName.bind(this) } />
+        <NamesList 
+          names={ this.state.names }
+          onClick={ this.handleDelete.bind(this) } />
+        <RandomiserDisplay 
+          names={this.state.names}
+          onStop={this.handleStop}/>
       </div>
     );
   }
