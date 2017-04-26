@@ -26,11 +26,16 @@ export default class RandomiserDisplay extends React.Component {
     this.props.onStop(this.state.name);
   }
 
+  start() {
+    this.setState({stopped: false})
+  }
+
   render() {
     return (
       <div id="randomiser-display">
         <h1>{this.state.name}</h1>
-        <button onClick={this.stop.bind(this)}>!!!</button>
+        <button onClick={this.stop.bind(this)}>STOP</button>
+        <button onClick={this.start.bind(this)}>GO</button>
       </div>
     );
   }
