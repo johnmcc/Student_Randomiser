@@ -24,7 +24,10 @@ export default class NamesForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleButtonClick.bind(this)}>
-        <input type="text" ref="input" onKeyUp={this.handleKeyUp.bind(this)}/>
+        <input 
+          type="text" 
+          ref="input" 
+          onKeyUp={this.handleKeyUp.bind(this)}/>
         <button>+</button>
       </form>
     );
