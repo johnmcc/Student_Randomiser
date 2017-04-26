@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import RandomiserForm from '../components/RandomiserForm';
 import RandomiserDisplay from '../components/RandomiserDisplay';
@@ -20,7 +21,11 @@ class App extends Component {
   }
 
   start(event){
-    event.preventDefault(); 
+    event.preventDefault();
+    let currentName = _.sample(this.state.names);
+    this.setState({
+      currentName: currentName
+    });
   }
 
   render() {

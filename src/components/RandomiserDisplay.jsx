@@ -1,8 +1,8 @@
 import React from 'react';
 
-const RandomiserDisplay = props => {
+const RandomiserDisplay = ({currentName}) => {
   return (
-    <p>Hello World!</p>
+    <h1>{currentName}</h1>
   );
 };
 
