@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   handleDelete(event) {
-    const newNames = this.state.names.filter((_, i) => i.toString() !== event.target.value);
+    const newNames = this.state.names.filter((x, i) => i.toString() !== event.target.value);
     this.setState({
       names: newNames
     })
