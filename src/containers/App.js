@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
 import NamesList from '../components/NamesList';
 import NamesForm from '../components/NamesForm';
@@ -19,10 +20,9 @@ class App extends Component {
     })
   }
 
-  handleDelete(event) {
-    const newNames = this.state.names.filter((x, i) => i.toString() !== event.target.value);
+  handleDelete(index) {
     this.setState({
-      names: newNames
+      names: this.state.names.filter((name, i) => {return i !== index})
     })
   }
 
@@ -31,16 +31,35 @@ class App extends Component {
   }
 
   render() {
+    const styles = {
+      icon: {
+        display: 'none'
+      },
+      wrapper: {
+        width: '75%',
+        margin: '0 auto'
+      }
+    };
+
     return (
-      <div className="App">
-        <NamesForm onButtonClick={ this.addName.bind(this) } />
-        <NamesList 
-          names={ this.state.names }
-          onClick={ this.handleDelete.bind(this) } />
-        <RandomiserDisplay 
-          names={this.state.names}
-          onStop={this.handleStop}/>
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <AppBar
+            iconStyleLeft={styles.icon}
+            title="Codeclan Random-O-Tron 3000"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          />
+          <div style={styles.wrapper}>
+            <NamesForm onButtonClick={ this.addName.bind(this) } />
+            <NamesList 
+              names={ this.state.names }
+              onClick={ this.handleDelete.bind(this) } />
+            <RandomiserDisplay 
+              names={this.state.names}
+              onStop={this.handleStop}/>
+          </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,4 +1,9 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 export default class NamesForm extends React.Component {
 
@@ -18,17 +23,23 @@ export default class NamesForm extends React.Component {
   handleButtonClick(event) {
     event.preventDefault();
     this.props.onButtonClick(this.state.name);
-    this.refs.input.value = ""
+    this.refs.textInput.input.value = ""
   }
 
   render() {
+    const formStyles = {
+      textAlign: 'center',
+      padding: '40px'
+    };
     return (
-      <form onSubmit={this.handleButtonClick.bind(this)}>
-        <input 
-          type="text" 
-          ref="input" 
-          onChange={this.handleTextChange.bind(this)}/>
-        <button>+</button>
+      <form style={formStyles} onSubmit={this.handleButtonClick.bind(this)}>
+        <TextField 
+          ref="textInput"
+          id="nameInput"
+          onChange={this.handleTextChange.bind(this)} />
+        
+        <FlatButton type="submit" primary={true} >Add Name</FlatButton>
+
       </form>
     );
   }
