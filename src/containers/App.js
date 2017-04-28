@@ -46,7 +46,7 @@ class App extends Component {
         <div className="App">
           <AppBar
             iconStyleLeft={styles.icon}
-            title="Codeclan Random-O-Tron 3000"
+            title="Random-O-Tron 3000"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
           <div style={styles.wrapper}>
