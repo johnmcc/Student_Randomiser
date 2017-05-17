@@ -17,7 +17,5 @@ export default (key,target) => {
     }
   }
 
-  if(values.length){
-    return values.length === 1 ? values[0] : values;
-  }
+  return values;
 }

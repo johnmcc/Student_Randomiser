@@ -6,12 +6,21 @@ import NamesList from '../components/NamesList';
 import NamesForm from '../components/NamesForm';
 import RandomiserDisplay from '../components/RandomiserDisplay';
 
+import getUrlParam from '../models/UrlParams'
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: this.props.names
+      names: []
     };
+  }
+
+  componentWillMount() {
+    const names = getUrlParam("names[]");
+    this.setState({
+      names: names
+    });
   }
 
   addName(name){
@@ -63,9 +72,5 @@ class App extends Component {
     );
   }
 }
-
-App.defaultProps = {
-  names: []
-};
 
 export default App;
