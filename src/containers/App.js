@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: []
+      names: this.props.names
     };
   }
 
@@ -63,5 +63,9 @@ class App extends Component {
     );
   }
 }
+
+App.defaultProps = {
+  names: []
+};
 
 export default App;
