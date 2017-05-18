@@ -36,7 +36,8 @@ class App extends Component {
   }
 
   handleStop(name) {
-    console.log("Stopped at", name)
+    let index = this.state.names.indexOf(name);
+    this.handleDelete(index);
   }
 
   render() {
@@ -65,7 +66,7 @@ class App extends Component {
               onClick={ this.handleDelete.bind(this) } />
             <RandomiserDisplay 
               names={this.state.names}
-              onStop={this.handleStop}/>
+              onStop={this.handleStop.bind(this)}/>
           </div>
         </div>
       </MuiThemeProvider>
