@@ -21,7 +21,7 @@ export default (props) => {
       <Chip
         key={i}
         value={name}
-        onRequestDelete={() => {props.onClick(i)} }
+        onRequestDelete={() => {props.onClick(name)} }
         style={styles.chip}
       >
         {name}

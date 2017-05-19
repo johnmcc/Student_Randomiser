@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
+import GroupSizeSelector from '../components/GroupSizeSelector';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -39,6 +41,10 @@ export default class NamesForm extends React.Component {
           onChange={this.handleTextChange.bind(this)} />
         
         <FlatButton type="submit" primary={true} >Add Name</FlatButton>
+
+        <GroupSizeSelector
+          size={this.props.groupSize}
+          onChange={this.props.onGroupSizeChange} />
 
       </form>
     );

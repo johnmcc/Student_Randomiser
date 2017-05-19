@@ -19,7 +19,8 @@ class App extends Component {
   componentWillMount() {
     const names = getUrlParam("names[]");
     this.setState({
-      names: names
+      names: names,
+      groupSize: 1
     });
   }
 
@@ -29,15 +30,16 @@ class App extends Component {
     })
   }
 
-  handleDelete(index) {
+  deleteNames(namesToRemove) {
     this.setState({
-      names: this.state.names.filter((name, i) => {return i !== index})
-    })
+      names: this.state.names.filter(name => {
+        return !namesToRemove.includes(name)
+      })
+    });
   }
 
-  handleStop(name) {
-    let index = this.state.names.indexOf(name);
-    this.handleDelete(index);
+  handleGroupSizeChange(e, i, size) {
+    this.setState({groupSize: size})
   }
 
   render() {
@@ -60,13 +62,17 @@ class App extends Component {
             iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
           <div style={styles.wrapper}>
-            <NamesForm onButtonClick={ this.addName.bind(this) } />
+            <NamesForm 
+              onButtonClick={ this.addName.bind(this) } 
+              groupSize={this.state.groupSize}
+              onGroupSizeChange={this.handleGroupSizeChange.bind(this)}/>
             <NamesList 
               names={ this.state.names }
-              onClick={ this.handleDelete.bind(this) } />
+              onClick={ this.deleteNames.bind(this) } />
             <RandomiserDisplay 
               names={this.state.names}
-              onStop={this.handleStop.bind(this)}/>
+              groupSize={this.state.groupSize}
+              onStop={this.deleteNames.bind(this)}/>
           </div>
         </div>
       </MuiThemeProvider>
