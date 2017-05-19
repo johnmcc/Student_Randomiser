@@ -7,14 +7,14 @@ export default class RandomiserDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      names: [],
       stopped: false
     }
   }
 
   setRandomName() {
     if (!this.state.stopped) this.setState({
-      name: _.sample(this.props.names)
+      names: _.sampleSize(this.props.names, this.props.groupSize)
     })
   }
 
@@ -24,7 +24,7 @@ export default class RandomiserDisplay extends React.Component {
 
   stop() {
     this.setState({stopped: true})
-    this.props.onStop(this.state.name);
+    this.props.onStop(this.state.names);
   }
 
   start() {
@@ -47,7 +47,7 @@ export default class RandomiserDisplay extends React.Component {
 
     return (
       <div id="randomiser-display" style={styles.wrapper}>
-        <h1 style={styles.heading}>{this.state.name}</h1>
+        <h1 style={styles.heading}>{this.state.names.join(" & ")}</h1>
 
         <RaisedButton 
           style={styles.button} 
