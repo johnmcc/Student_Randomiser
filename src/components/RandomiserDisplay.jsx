@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 export default class RandomiserDisplay extends React.Component {
@@ -31,11 +32,35 @@ export default class RandomiserDisplay extends React.Component {
   }
 
   render() {
+    const styles = {
+      wrapper: {
+        textAlign: 'center'
+      },
+      heading: {
+        fontFamily: "Roboto",
+        fontSize: '48px'
+      },
+      button: {
+        marginRight: "10px"
+      }
+    };
+
     return (
-      <div id="randomiser-display">
-        <h1>{this.state.name}</h1>
-        <button onClick={this.stop.bind(this)}>STOP</button>
-        <button onClick={this.start.bind(this)}>GO</button>
+      <div id="randomiser-display" style={styles.wrapper}>
+        <h1 style={styles.heading}>{this.state.name}</h1>
+
+        <RaisedButton 
+          style={styles.button} 
+          secondary={true} 
+          onClick={this.stop.bind(this)}>
+            Stop
+        </RaisedButton>
+
+        <RaisedButton 
+          primary={true} 
+          onClick={this.start.bind(this)}>
+            Go
+        </RaisedButton>
       </div>
     );
   }

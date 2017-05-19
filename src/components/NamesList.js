@@ -1,14 +1,37 @@
 import React from 'react';
-
+import Chip from 'material-ui/Chip';
 
 export default (props) => {
-  const list = props.names.map((name, i) => {
-    return (
-      <li key={i}>
-        {name} <button value={i} onClick={props.onClick}>-</button>        
-      </li>
-    )
-  })
+  if(!props.names.length){
+    return null;
+  }
 
-  return <ul id="names-list">{list}</ul>
+  const styles = {
+    chip: {
+      margin: 4
+    },
+    wrapper: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+  };
+
+  const chips = props.names.map((name, i) => {
+    return (
+      <Chip
+        key={i}
+        value={name}
+        onRequestDelete={() => {props.onClick(i)} }
+        style={styles.chip}
+      >
+        {name}
+      </Chip>
+    );
+  });
+
+  return (
+    <div style={styles.wrapper}>
+      {chips}
+    </div>
+  );
 }
