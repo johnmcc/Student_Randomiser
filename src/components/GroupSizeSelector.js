@@ -7,8 +7,7 @@ export default ({size, onChange}) => {
       <div>
         <SelectField
           value={size} 
-          onChange={onChange}
-          floatingLabelText="Size of group:">
+          onChange={onChange}>
           <MenuItem value={1} primaryText="One" />
           <MenuItem value={2} primaryText="Pair Programming" />
           <MenuItem value={3} primaryText="Threesome" />
