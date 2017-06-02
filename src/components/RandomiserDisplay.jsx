@@ -1,14 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
-import RaisedButton from 'material-ui/RaisedButton';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import Toggle from 'material-ui/Toggle';
 
 export default class RandomiserDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       names: [],
-      stopped: false
+      stopped: false,
+      autodelete: false
     }
   }
 
@@ -22,9 +24,17 @@ export default class RandomiserDisplay extends React.Component {
     setInterval(this.setRandomName.bind(this), 100)
   }
 
+  toggleAutodelete(e, isToggled) {
+    this.setState({autodelete: isToggled})
+  }
+
   stop() {
-    this.setState({stopped: true})
-    this.props.onStop(this.state.names);
+    this.setState({stopped: true});
+    if (this.state.autodelete) this.delete()
+  }
+
+  delete() {
+    this.props.onDelete(this.state.names);
   }
 
   start() {
@@ -42,6 +52,11 @@ export default class RandomiserDisplay extends React.Component {
       },
       button: {
         marginRight: "10px"
+      },
+      toggle: {
+        width: '20%',
+        margin: "0 auto",
+        marginTop: "10px"
       }
     };
 
@@ -53,14 +68,29 @@ export default class RandomiserDisplay extends React.Component {
           style={styles.button} 
           secondary={true} 
           onClick={this.stop.bind(this)}>
-            Stop
+          Stop
+        </RaisedButton>
+
+        <RaisedButton 
+          style={styles.button} 
+          secondary={true}
+          disabled={this.state.autodelete} 
+          onClick={this.delete.bind(this)}>
+          Delete
         </RaisedButton>
 
         <RaisedButton 
           primary={true} 
           onClick={this.start.bind(this)}>
-            Go
+          Go
         </RaisedButton>
+
+        <Toggle
+          label="Auto-delete"
+          defaultToggled={false}
+          onToggle={this.toggleAutodelete.bind(this)}
+          style={styles.toggle}/>
+
       </div>
     );
   }

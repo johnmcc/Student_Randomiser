@@ -58,7 +58,7 @@ class App extends Component {
         <div className="App">
           <AppBar
             iconStyleLeft={styles.icon}
-            title="Random-O-Tron 3000"
+            title="Random-O-Tron 5000"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
           />
           <div style={styles.wrapper}>
@@ -72,7 +72,7 @@ class App extends Component {
             <RandomiserDisplay 
               names={this.state.names}
               groupSize={this.state.groupSize}
-              onStop={this.deleteNames.bind(this)}/>
+              onDelete={this.deleteNames.bind(this)}/>
           </div>
         </div>
       </MuiThemeProvider>
