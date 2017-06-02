@@ -23,8 +23,11 @@ export default class RandomiserDisplay extends React.Component {
   }
 
   stop() {
-    this.setState({stopped: true})
-    this.props.onStop(this.state.names);
+    this.setState({stopped: true});
+  }
+
+  delete() {
+    this.props.onDelete(this.state.names);
   }
 
   start() {
@@ -53,13 +56,20 @@ export default class RandomiserDisplay extends React.Component {
           style={styles.button} 
           secondary={true} 
           onClick={this.stop.bind(this)}>
-            Stop
+          Stop
+        </RaisedButton>
+
+        <RaisedButton 
+          style={styles.button} 
+          secondary={true} 
+          onClick={this.delete.bind(this)}>
+          Delete
         </RaisedButton>
 
         <RaisedButton 
           primary={true} 
           onClick={this.start.bind(this)}>
-            Go
+          Go
         </RaisedButton>
       </div>
     );

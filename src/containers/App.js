@@ -72,7 +72,7 @@ class App extends Component {
             <RandomiserDisplay 
               names={this.state.names}
               groupSize={this.state.groupSize}
-              onStop={this.deleteNames.bind(this)}/>
+              onDelete={this.deleteNames.bind(this)}/>
           </div>
         </div>
       </MuiThemeProvider>
